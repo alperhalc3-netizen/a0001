@@ -17,6 +17,22 @@
   pointer-events: auto;
 }
 
+:global(html[data-nav="off"]) .header {
+  opacity: 0;
+  pointer-events: none;
+}
+
+:global(html[data-theme="creme"]) .header {
+  background: #f6f5f2;
+  color: #0b0b0b;
+  border-bottom-color: rgba(11, 11, 11, 0.14);
+}
+
+:global(html[data-theme="creme"]) .logo {
+  filter: none;
+  mix-blend-mode: multiply;
+}
+
 .role {
   margin: 0;
   display: grid;
