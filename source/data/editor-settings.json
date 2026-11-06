@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "text": {
+    "name": "A/0001",
+    "tagline": "Art made by hand. Made to exist.",
+    "announce": "Original artwork, handmade prints and objects by Alper Halıcı",
+    "newDropLabel": "New Drop",
+    "outroTitle": "Say hello"
+  },
+  "theme": {
+    "ink": "#000000",
+    "paper": "#ffffff"
+  },
+  "motion": {
+    "reveal": true,
+    "brush": true,
+    "dab": true,
+    "durationMs": 900
+  },
+  "layout": {
+    "pagePad": "clamp(1rem, 2.5vw, 2.5rem)",
+    "columnGapRem": 1.1,
+    "plateMaxVw": 44,
+    "dropThumbPx": 52,
+    "dropWeight": 500,
+    "dropSizeRem": 0.95,
+    "logoHeightRem": 2.15,
+    "announceSizeRem": null,
+    "announceWeight": 400,
+    "headerWeight": 600
+  },
+  "sections": ["hero", "newDrop", "works", "tattoo", "shop", "outro"],
+  "hidden": [],
+  "newDropSlug": "cop-2",
+  "newDropImage": null,
+  "worksOrder": [],
+  "shopOrder": []
+}

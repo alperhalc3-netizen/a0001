@@ -1,0 +1,23 @@
+
+.layout {
+  display: grid;
+  gap: 3.5rem;
+  padding-bottom: 8rem;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1.3fr) minmax(12rem, 0.7fr);
+    gap: 5.5rem;
+    align-items: start;
+  }
+}
+
+.aside {
+  display: grid;
+  gap: 1rem;
+}
+
+.aside a {
+  text-decoration: none;
+}

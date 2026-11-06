@@ -1,0 +1,115 @@
+.band {
+  width: 100%;
+  border-top: 1px solid var(--hairline);
+  border-bottom: 1px solid var(--hairline);
+  background: var(--bg);
+  padding: 0.55rem 0 0.7rem;
+}
+
+.head {
+  width: min(100% - (var(--page-pad) * 2), var(--max));
+  margin: 0 auto 0.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.chip {
+  margin: 0;
+  color: var(--mid-grey);
+}
+
+.toggle {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-sans), Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--black);
+  padding: 0;
+}
+
+.toggle:hover {
+  opacity: 0.55;
+}
+
+.icon {
+  font-size: 0.55rem;
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.marquee {
+  position: relative;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.1rem, 2.5vw, 2rem);
+  width: max-content;
+  margin: 0;
+  padding: 0.15rem 0;
+  list-style: none;
+  font-family: var(--font-display), var(--font-sans), Helvetica Neue, Helvetica,
+    Arial, sans-serif;
+  font-size: clamp(0.95rem, 2.2vw, 1.45rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--black);
+}
+
+.track li {
+  white-space: nowrap;
+}
+
+.track li::after {
+  content: "·";
+  margin-left: clamp(1.1rem, 2.5vw, 2rem);
+  color: var(--mid-grey);
+  font-weight: 700;
+}
+
+.marquee[data-animate="true"] .track {
+  animation: band-marquee var(--dur, 36s) linear infinite;
+}
+
+.marquee[data-paused="true"] .track {
+  animation-play-state: paused;
+}
+
+@keyframes band-marquee {
+  to {
+    transform: translateX(calc(-50% - clamp(0.875rem, 2vw, 1.75rem)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee[data-animate="true"] .track {
+    animation: none;
+    flex-wrap: wrap;
+    width: min(100% - (var(--page-pad) * 2), var(--max));
+    margin-inline: auto;
+    justify-content: flex-start;
+    gap: 0.85rem 1.5rem;
+    font-size: clamp(1.05rem, 3vw, 1.45rem);
+  }
+
+  .track li[aria-hidden="true"] {
+    display: none;
+  }
+
+  .track li::after {
+    margin-left: 1.5rem;
+  }
+}

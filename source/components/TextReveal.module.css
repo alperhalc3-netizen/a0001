@@ -1,0 +1,34 @@
+.root {
+  display: block;
+}
+
+.mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+
+.inner {
+  display: inline-block;
+  transform: translate3d(0, 105%, 0);
+  opacity: 0;
+  transition:
+    transform 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+.root[data-visible="true"] .inner {
+  transform: none;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inner {
+    transform: none;
+    opacity: 1;
+    transition: none;
+  }
+}

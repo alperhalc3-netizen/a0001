@@ -1,0 +1,215 @@
+.shell {
+  width: min(1100px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 5rem;
+}
+
+.login,
+.top {
+  max-width: 640px;
+}
+
+.login h1,
+.top h1 {
+  font-family: var(--font-display), Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.06em;
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.85;
+  margin: 0.35rem 0 1rem;
+}
+
+.login p,
+.note {
+  max-width: 42rem;
+}
+
+.login label,
+.field {
+  display: grid;
+  gap: 0.4rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.login input,
+.field input,
+.field select,
+.field textarea {
+  font: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0.75rem 0.85rem;
+  border: 1px solid #111;
+  background: #fff;
+  color: #111;
+  width: 100%;
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  align-items: flex-end;
+  max-width: none;
+  margin-bottom: 1.5rem;
+}
+
+.actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.textBtn,
+.tabs button,
+.toolbar button,
+.add,
+.upload {
+  appearance: none;
+  background: none;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  color: inherit;
+}
+
+.textBtn {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  border-top: 1px solid #111;
+  border-bottom: 1px solid #111;
+  padding: 0.9rem 0;
+  margin: 1.5rem 0 1rem;
+}
+
+.tabs button {
+  font-family: var(--font-display), Helvetica, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  font-size: 1.15rem;
+}
+
+.tabs button[aria-current="page"] {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.count {
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 1.25rem;
+  border: 1px solid #111;
+  padding: 1rem;
+  background: #fff;
+}
+
+.preview {
+  aspect-ratio: 1;
+  background: #f3f3f3;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  font-size: 0.8rem;
+}
+
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.fields {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.75rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+  align-items: center;
+}
+
+.check,
+.upload {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.upload {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.upload input {
+  display: none;
+}
+
+.danger {
+  color: #8a1212;
+}
+
+.add {
+  margin-top: 1.5rem;
+  font-family: var(--font-display), Helvetica, sans-serif;
+  font-weight: 800;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+}
+
+.error,
+.info {
+  padding: 0.85rem 0;
+}
+
+.error {
+  color: #8a1212;
+}
+
+.info {
+  color: #222;
+}
+
+@media (max-width: 720px) {
+  .card,
+  .top {
+    grid-template-columns: 1fr;
+    display: grid;
+  }
+
+  .actions {
+    justify-content: flex-start;
+  }
+}

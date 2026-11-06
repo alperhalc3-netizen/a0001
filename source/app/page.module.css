@@ -1,0 +1,183 @@
+.page {
+  width: 100%;
+}
+
+.hero {
+  width: min(100% - (var(--page-pad) * 2), var(--max));
+  margin: 0 auto;
+  min-height: calc(100svh - var(--header-h) - 1rem);
+  padding: clamp(1.25rem, 3vw, 2rem) 0 1.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.heroTop {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.wordmark {
+  font-size: clamp(3.25rem, 18vw, 11rem);
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+  margin: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+.signature {
+  width: min(100%, 28rem);
+  overflow: hidden;
+  border-radius: 0.25rem;
+  background: transparent;
+}
+
+.signatureImage {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 92;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.95;
+}
+
+.intro {
+  max-width: 26rem;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.35;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.heroBottom {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mail,
+.copy {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 500;
+  opacity: 0.28;
+}
+
+.mail {
+  text-decoration: none;
+  transition: opacity 0.3s var(--ease, cubic-bezier(0.65, 0.05, 0, 1));
+}
+
+.mail:hover {
+  opacity: 0.85;
+}
+
+/* Full-bleed cover stack — osply-like project covers */
+.covers {
+  width: 100%;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0 0 2rem;
+}
+
+.cover {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  isolation: isolate;
+}
+
+.coverMedia {
+  position: relative;
+  width: calc(100% - (var(--page-pad) * 2));
+  margin-inline: var(--page-pad);
+  height: min(78svh, 52rem);
+  overflow: hidden;
+  background: transparent;
+  border-radius: 0.5rem;
+}
+
+.coverImage {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  transform: scale(1.001);
+  transition: transform var(--dur, 0.735s) var(--ease, cubic-bezier(0.65, 0.05, 0, 1));
+  will-change: transform;
+}
+
+.cover:hover .coverImage {
+  transform: scale(1.045);
+}
+
+.coverMeta {
+  position: absolute;
+  left: calc(var(--page-pad) + 0.85rem);
+  right: calc(var(--page-pad) + 0.85rem);
+  bottom: 1rem;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem 1rem;
+  align-items: end;
+  pointer-events: none;
+  color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.55);
+}
+
+.coverNum,
+.coverName,
+.coverTag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.coverName {
+  justify-self: start;
+}
+
+.coverTag {
+  justify-self: end;
+  opacity: 0.85;
+}
+
+@media (max-width: 640px) {
+  .coverMedia {
+    height: min(62svh, 28rem);
+    border-radius: 0.35rem;
+  }
+
+  .coverMeta {
+    grid-template-columns: auto 1fr;
+  }
+
+  .coverTag {
+    grid-column: 1 / -1;
+    justify-self: start;
+    opacity: 0.7;
+  }
+
+  .intro {
+    max-width: 18rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coverImage,
+  .cover:hover .coverImage,
+  .mail {
+    transition: none !important;
+    transform: none !important;
+  }
+}

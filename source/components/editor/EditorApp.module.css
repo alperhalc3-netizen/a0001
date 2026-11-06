@@ -1,0 +1,122 @@
+.shell {
+  display: grid;
+  grid-template-columns: minmax(16rem, 22rem) 1fr;
+  min-height: 100vh;
+  background: #fff;
+  color: #000;
+}
+
+.panel {
+  overflow: auto;
+  max-height: 100vh;
+  padding: 1rem 1rem 2rem;
+  border-right: 1px solid #000;
+}
+
+.head h1,
+.panel h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.head p,
+.publish p {
+  margin: 0.35rem 0 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.panel section {
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+}
+
+.panel label {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+}
+
+.panel input,
+.panel select,
+.panel button {
+  font: inherit;
+  color: inherit;
+  background: #fff;
+  border: 1px solid #000;
+  padding: 0.28rem 0.4rem;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-top: 0.7rem;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.3rem;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.file input {
+  display: block;
+  margin-top: 0.2rem;
+}
+
+.publish button {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.stage {
+  min-width: 0;
+  padding: 0.7rem;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: 0.5rem;
+}
+
+.frame {
+  height: calc(100vh - 4.5rem);
+  max-width: 100%;
+  border: 1px solid #000;
+  background: #fff;
+  justify-self: center;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+@media (max-width: 900px) {
+  .shell {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    max-height: none;
+    border-right: 0;
+    border-bottom: 1px solid #000;
+  }
+
+  .frame {
+    height: 70vh;
+  }
+}
