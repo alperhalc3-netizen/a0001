@@ -1,0 +1,38 @@
+1:"$Sreact.fragment"
+2:"/a0001/_next/static/chunks/3qfy96eoyh-ek.js"
+3:"/a0001/_next/static/chunks/3jqx41q01_0vc.js"
+4:"LightboxProvider"
+5:I[74285,["$2","$3"],"$4"]
+6:I[51850,["$2","$3"],"BrushCursor"]
+7:I[70119,["$2","$3"],"Header"]
+8:I[39756,["$2","$3"],"default"]
+9:I[37457,["$2","$3"],"default"]
+a:"/a0001/_next/static/chunks/1jh3_m5_enwj9.js"
+b:I[22016,["$2","$3","$a"],""]
+c:I[56691,["$2","$3"],"Footer"]
+12:I[97367,["$2","$3"],"OutletBoundary"]
+13:"$Sreact.suspense"
+15:"ViewportBoundary"
+16:I[97367,["$2","$3"],"$15"]
+18:"MetadataBoundary"
+19:I[97367,["$2","$3"],"$18"]
+1b:I[68027,["$2","$3"],"default",1]
+:HL["/a0001/_next/static/chunks/2s065gh9vt3i7.css","style"]
+:HL["/a0001/_next/static/chunks/09pvviwoz6eru.css","style"]
+:HL["/a0001/_next/static/media/07c7676b89ed2778-s.p.2bn3s6zvc0dyp.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/a0001/_next/static/media/2b81eeca71e9850c-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/a0001/_next/static/media/916cd8a3bde3edf8-s.p.0oace-s_gkfks.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/a0001/_next/static/media/d6c1ff7e86974212-s.p.40sczeszzbjw1.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+e:X
+10:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":["$L11",[["$","script","script-0",{"src":"/a0001/_next/static/chunks/1jh3_m5_enwj9.js","async":true,"nonce":"$undefined"}]],["$","$L12",null,{"children":["$","$13",null,{"name":"Next.MetadataOutlet","children":"$@14"}]}]]}],"p":false,"v":null}}]]
+f:[["children",{"s":{"n":"slug","t":"d","k":"0002","s":[]},"h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L8",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$e"},"c":"$Q10"}]]
+d:[["children",{"s":"shop","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L8",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$e"},"c":"$Qf"}]]
+0:{"P":null,"c":["","shop","0002",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/a0001/_next/static/chunks/2s065gh9vt3i7.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/a0001/_next/static/chunks/09pvviwoz6eru.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/a0001/_next/static/chunks/3qfy96eoyh-ek.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/a0001/_next/static/chunks/3jqx41q01_0vc.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"-KQRRa_variable ZzaPqG_variable VCrZzq_variable","children":["$","body",null,{"children":[["$","a",null,{"className":"skip-link","href":"#main","children":"Skip to content"}],["$","$L5",null,{"children":[["$","$L6",null,{}],["$","$L7",null,{}],["$","main",null,{"id":"main","className":"site-main","children":["$","$L8",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L9",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"wrap","children":["$","header",null,{"className":"page-head","children":[["$","p",null,{"className":"meta","children":"404"}],["$","h1",null,{"children":"Not found"}],["$","p",null,{"children":"This page is not in the archive."}],["$","p",null,{"children":["$","$Lb",null,{"href":"/","children":"Return home"}]}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$Lc",null,{}]]}]]}]}]]}],"p":false,"v":null},"c":"$Qd"},"h":{"r":["$","$1","h",{"children":[null,["$","$L16",null,{"children":"$L17"}],["$","$L19",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$13",null,{"name":"Next.Metadata","children":"$L1a"}]}],null]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],"p":false,"v":null}},"m":"$undefined","G":["$1b",[["$","link","0",{"rel":"stylesheet","href":"/a0001/_next/static/chunks/2s065gh9vt3i7.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/a0001/_next/static/chunks/09pvviwoz6eru.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"zlbrd0tijDpILVer2-1_K"}
+1c:"DetailLightboxImage"
+1d:I[79193,["$2","$3","$a"],"$1c"]
+e:C
+11:["$","div",null,{"className":"wrap","children":["$","article",null,{"className":"detail","children":[["$","$L1d",null,{"src":"/a0001/shop/0002.jpg","alt":"0002","title":"0002","width":916,"height":916,"priority":true}],["$","div",null,{"className":"detail-info","children":[["$","p",null,{"className":"meta","children":["$","$Lb",null,{"href":"/shop?category=limited-edition-prints","children":"Limited Edition Prints"}]}],["$","h1",null,{"children":"0002"}],["$","p",null,{"className":"serif","style":{"fontSize":"1.35rem"},"children":"₺1.500"}],["$","dl",null,{"className":"detail-dl","children":[["$","div",null,{"children":[["$","dt",null,{"children":"Availability"}],["$","dd",null,{"children":"Available"}]]}],["$","div",null,{"children":[["$","dt",null,{"children":"Stock"}],["$","dd",null,{"children":30}]]}]]}],["$","p",null,{"className":"detail-note","children":"Original artwork, handmade prints and objects by Alper Halıcı"}],["$","p",null,{"className":"detail-note","children":"Free shipping on purchases of 1.500 TL and above."}],["$","a",null,{"className":"btn","href":"https://www.shopier.com/A001/52405391","rel":"noreferrer","target":"_blank","children":"Purchase on Shopier"}]]}]]}]}]
+17:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1e:I[27201,["$2","$3"],"IconMark"]
+14:null
+1a:[["$","title","0",{"children":"0002 — A/0001"}],["$","meta","1",{"name":"description","content":"Original artwork, handmade prints and objects by Alper Halıcı. A/0001 is an independent artist platform presenting original artwork across multiple disciplines."}],["$","link","2",{"rel":"icon","href":"/a0001/favicon.ico?favicon.117ezoe8m31dk.ico","sizes":"48x48","type":"image/x-icon"}],["$","$L1e","3",{}]]
