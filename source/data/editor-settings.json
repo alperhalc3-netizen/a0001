@@ -8,8 +8,8 @@
     "outroTitle": "Say hello"
   },
   "theme": {
-    "ink": "#000000",
-    "paper": "#ffffff"
+    "ink": "#f6f5f2",
+    "paper": "#050505"
   },
   "motion": {
     "reveal": true,
@@ -18,7 +18,7 @@
     "durationMs": 900
   },
   "layout": {
-    "pagePad": "clamp(1rem, 2.5vw, 2.5rem)",
+    "pagePad": "clamp(20px, 2.22vw, 32px)",
     "columnGapRem": 1.1,
     "plateMaxVw": 44,
     "dropThumbPx": 52,

@@ -71,6 +71,15 @@ export function BrushCursor() {
     let strokeAge = 0;
     let idleGap = 0;
     let seed = 1;
+    let inkRgb = "246, 245, 242";
+
+    function readInk() {
+      const hex = getComputedStyle(document.documentElement).getPropertyValue("--ink").trim();
+      const match = /^#([0-9a-f]{6})$/i.exec(hex);
+      if (!match) return;
+      const value = Number.parseInt(match[1], 16);
+      inkRgb = `${(value >> 16) & 255}, ${(value >> 8) & 255}, ${value & 255}`;
+    }
 
     function resize() {
       dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -86,6 +95,7 @@ export function BrushCursor() {
     }
 
     function setEnabled() {
+      readInk();
       enabled =
         fine.matches &&
         !reduce.matches &&
@@ -153,7 +163,7 @@ export function BrushCursor() {
           omt * omt * wStart + 2 * omt * t * wMid + t * t * wEnd;
 
         // Core ink
-        ctx.fillStyle = `rgba(10, 10, 10, ${0.55 + 0.28 * (1 - Math.abs(t - 0.5) * 0.35)})`;
+        ctx.fillStyle = `rgba(${inkRgb}, ${0.55 + 0.28 * (1 - Math.abs(t - 0.5) * 0.35)})`;
         ctx.beginPath();
         ctx.arc(x, y, Math.max(0.45, w * 0.48), 0, Math.PI * 2);
         ctx.fill();
@@ -167,7 +177,7 @@ export function BrushCursor() {
           const px = x + ux * spread + uy * along;
           const py = y + uy * spread - ux * along;
           const rw = Math.max(0.25, w * (0.08 + rand() * 0.16));
-          ctx.fillStyle = `rgba(10, 10, 10, ${0.08 + rand() * 0.16})`;
+          ctx.fillStyle = `rgba(${inkRgb}, ${0.08 + rand() * 0.16})`;
           ctx.beginPath();
           ctx.arc(px, py, rw, 0, Math.PI * 2);
           ctx.fill();
@@ -175,7 +185,7 @@ export function BrushCursor() {
       }
 
       // Smooth spine stroke for cohesion
-      ctx.strokeStyle = "rgba(10, 10, 10, 0.42)";
+      ctx.strokeStyle = `rgba(${inkRgb}, 0.42)`;
       ctx.lineWidth = Math.max(0.7, wMid * 0.42);
       ctx.beginPath();
       ctx.moveTo(mx1, my1);
@@ -185,7 +195,7 @@ export function BrushCursor() {
       // Hairline fibrous edge
       const ox = ux * (wMid * 0.28);
       const oy = uy * (wMid * 0.28);
-      ctx.strokeStyle = "rgba(10, 10, 10, 0.16)";
+      ctx.strokeStyle = `rgba(${inkRgb}, 0.16)`;
       ctx.lineWidth = Math.max(0.45, wMid * 0.22);
       ctx.beginPath();
       ctx.moveTo(mx1 + ox, my1 + oy);

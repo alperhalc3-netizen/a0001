@@ -1,6 +1,6 @@
 
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Inter, Syne } from "next/font/google";
+import { Archivo, IBM_Plex_Mono, Inter } from "next/font/google";
 import { SettingsProvider } from "@/components/editor/SettingsProvider";
 import { BrushCursor } from "@/components/BrushCursor";
 import { Footer } from "@/components/Footer";
@@ -15,9 +15,9 @@ const sans = Inter({
   display: "swap",
 });
 
-const display = Syne({
+const display = Archivo({
   subsets: ["latin"],
-  weight: ["700", "800"],
+  weight: ["600", "900"],
   variable: "--font-display",
   display: "swap",
 });

@@ -2,11 +2,14 @@
   position: fixed;
   inset: 0 0 auto;
   z-index: 45;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  column-gap: 1.25rem;
-  padding: calc(var(--page-pad) * 0.7) var(--page-pad) 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-h);
+  padding: 0 20px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--ink);
   pointer-events: none;
 }
 
@@ -31,9 +34,20 @@
 
 .logo {
   width: auto !important;
-  height: var(--logo-h, 2.15rem) !important;
-  mix-blend-mode: multiply;
+  height: 34px !important;
+  mix-blend-mode: screen;
   flex: none;
+  filter: invert(1);
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 0 32px;
+  }
+
+  .logo {
+    height: 36px !important;
+  }
 }
 
 .roleCopy,
@@ -221,6 +235,49 @@
   .indexLink i {
     display: inline-block;
     justify-self: end;
+  }
+}
+
+.motto,
+.toggle,
+.nav button {
+  display: none !important;
+}
+
+.nav,
+.navOpen {
+  display: flex !important;
+  position: static !important;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 16px !important;
+  background: transparent !important;
+  border: 0 !important;
+  padding: 0 !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+}
+
+.link {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+@media (min-width: 768px) {
+  .nav,
+  .navOpen {
+    gap: 40px !important;
+  }
+}
+
+@media (min-width: 900px) {
+  .header {
+    display: flex !important;
   }
 }
 
