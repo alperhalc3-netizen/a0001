@@ -1,4 +1,4 @@
-# Build the Next.js source and deploy only the static export.
+# Publish the recovered static site. The Next.js source stays in source/ and is not deployed.
 name: Deploy static content to Pages
 
 on:
@@ -16,24 +16,14 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v6
-
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: 22
-          cache: npm
-          cache-dependency-path: source/package-lock.json
-
-      - name: Install and build
-        working-directory: source
-        env:
-          GITHUB_PAGES: "1"
-        run: npm ci && npm run build
 
       - name: Setup Pages
         uses: actions/configure-pages@v6
@@ -41,16 +31,9 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: source/out
+          path: recovered
           include-hidden-files: true
 
-  deploy:
-    needs: build
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v5
