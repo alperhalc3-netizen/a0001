@@ -5,3 +5,6 @@ source/out/
 source/.api-dev-only/
 .env*
 *.pem
+
+game/__pycache__/
+*.pyc
