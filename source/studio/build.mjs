@@ -49,7 +49,7 @@ function money(value) {
 
 function words(text) {
   return text.split(/(\s+)/).map((part, index) => {
-    if (!part.trim()) return `<span class="space"></span>`;
+    if (!part.trim()) return `<span class="space"> </span>`;
     return `<span class="word" style="--delay:${index}">${esc(part)}</span>`;
   }).join("");
 }
@@ -106,7 +106,14 @@ function card(item, href) {
 </a>`;
 }
 
-function detail({ title, href, image, alt, paragraphs, extra }) {
+const previewLimit = 9;
+
+function detail({ title, image, alt, paragraphs, price, extra }) {
+  const facts = [
+    price ? `<p class="price">${esc(price)}</p>` : "",
+    paragraphs.map((line) => `<p class="lead">${esc(line)}</p>`).join(""),
+    extra || "",
+  ].join("");
   return shell({
     title: `${title} — A/0001`,
     kind: "detail",
@@ -115,7 +122,7 @@ function detail({ title, href, image, alt, paragraphs, extra }) {
 <div class="modal__bar"><a class="round" href="${base}/" aria-label="Close">×</a></div>
 <main class="modal__main" id="main">
 <h1>${words(title)}</h1>
-<div class="facts">${paragraphs.map((line) => `<p class="lead">${esc(line)}</p>`).join("")}${extra || ""}</div>
+<div class="facts">${facts}</div>
 <figure><img src="${asset(image)}" alt="${esc(alt)}"></figure>
 </main>
 </div>
@@ -123,11 +130,16 @@ function detail({ title, href, image, alt, paragraphs, extra }) {
   });
 }
 
+function moreLink(href, total) {
+  if (total <= previewLimit) return "";
+  return `<p class="more"><a class="pill" href="${href}">All / Tümü</a></p>`;
+}
+
 function home() {
   const heroShots = art.slice(0, 4).map((item, index) => `<div class="hero__image" style="--delay:${index}"><a href="${base}/works/${item.slug}/"><img src="${asset(item.image)}" alt="${esc(item.title)}"></a></div>`).join("");
-  const slides = art.map((item) => `<div class="carousel__slide"><a href="${base}/works/${item.slug}/"><img src="${asset(item.image)}" alt="${esc(item.title)}" draggable="false"></a><a class="pill" href="${base}/works/${item.slug}/">${esc(item.title)}</a></div>`).join("");
-  const tattooCards = tattoos.map((item) => card(item, `${base}/tattoo/${item.slug}/`)).join("");
-  const shopCards = products.map((item) => card(item, `${base}/shop/${item.slug}/`)).join("");
+  const slides = art.slice(0, previewLimit).map((item) => `<div class="carousel__slide"><a href="${base}/works/${item.slug}/"><img src="${asset(item.image)}" alt="${esc(item.title)}" draggable="false"></a><a class="pill" href="${base}/works/${item.slug}/">${esc(item.title)}</a></div>`).join("");
+  const tattooCards = tattoos.slice(0, previewLimit).map((item) => card(item, `${base}/tattoo/${item.slug}/`)).join("");
+  const shopCards = products.slice(0, previewLimit).map((item) => card(item, `${base}/shop/${item.slug}/`)).join("");
   const role = site.tagline;
   return shell({
     title: "A/0001",
@@ -142,6 +154,11 @@ function home() {
 <h1 aria-label="${esc(site.name)}">${words(site.name)}</h1>
 <div class="hero__images">${heroShots}</div>
 <p class="role">${words(role)}</p>
+<nav class="shortcuts" aria-label="Sections">
+<a class="pill" href="#art">Art</a>
+<a class="pill" href="#tattoo">Tattoo</a>
+<a class="pill" href="#shop">Shop</a>
+</nav>
 </div>
 <div class="hero__bot">
 <p class="clients">Work includes</p>
@@ -154,13 +171,15 @@ function home() {
 <p>Prints, objects and compositions. Tattoos stay in their own collection.</p>
 </div>
 <div class="carousel" aria-label="Art"><div class="carousel__track">${slides}</div></div>
+${moreLink(`${base}/works/`, art.length)}
 </section>
 <section class="block" id="tattoo">
 <div class="text-block">
 <h2>Tattoo</h2>
-<p>Thirty pieces from the tattoo collection.</p>
+<p>A short selection from the tattoo collection.</p>
 </div>
 <div class="work-grid">${tattooCards}</div>
+${moreLink(`${base}/tattoo/`, tattoos.length)}
 </section>
 <section class="block" id="shop">
 <div class="text-block">
@@ -168,6 +187,7 @@ function home() {
 <p>Prints and objects. Checkout stays on Shopier.</p>
 </div>
 <div class="work-grid">${shopCards}</div>
+${moreLink(`${base}/shop/`, products.length)}
 </section>
 </main>
 <div class="phantom"></div>
@@ -204,6 +224,24 @@ ${paragraphs}
   });
 }
 
+function archivePage({ title, lede, items, hrefFor }) {
+  const cards = items.map((item) => card(item, hrefFor(item))).join("");
+  return shell({
+    title: `${title} — A/0001`,
+    kind: "archive",
+    body: `<main class="index archive" id="main">
+<section class="block">
+<div class="text-block">
+<h1>${esc(title)}</h1>
+<p>${esc(lede)}</p>
+<a class="pill" href="${base}/">Home</a>
+</div>
+<div class="work-grid">${cards}</div>
+</section>
+</main>`,
+  });
+}
+
 function contactPage() {
   return shell({
     title: "Contact — A/0001",
@@ -233,6 +271,24 @@ writeFileSync(join(out, ".nojekyll"), "");
 writePage("index.html", home());
 writePage("about/index.html", aboutPage());
 writePage("contact/index.html", contactPage());
+writePage("works/index.html", archivePage({
+  title: "Art",
+  lede: "Every tattoo-free work.",
+  items: art,
+  hrefFor: (item) => `${base}/works/${item.slug}/`,
+}));
+writePage("tattoo/index.html", archivePage({
+  title: "Tattoo",
+  lede: "The full tattoo collection.",
+  items: tattoos,
+  hrefFor: (item) => `${base}/tattoo/${item.slug}/`,
+}));
+writePage("shop/index.html", archivePage({
+  title: "Shop",
+  lede: "Prints and objects. Checkout stays on Shopier.",
+  items: products,
+  hrefFor: (item) => `${base}/shop/${item.slug}/`,
+}));
 
 for (const item of art) {
   const lines = [`${item.year}`, labels[item.category] || item.category, item.medium, item.dimensions].filter(Boolean);
@@ -254,12 +310,13 @@ for (const item of tattoos) {
 }
 
 for (const item of products) {
-  const lines = [money(item.priceTRY), item.availability, item.shippingNote, item.description].filter(Boolean);
-  const extra = `<p><a class="pill" href="${esc(item.purchaseUrl)}" target="_blank" rel="noreferrer">Shopier</a></p>`;
+  const lines = [item.availability, item.shippingNote, item.description].filter(Boolean);
+  const extra = `<a class="pill" href="${esc(item.purchaseUrl)}" target="_blank" rel="noreferrer">Shopier</a>`;
   writePage(`shop/${item.slug}/index.html`, detail({
     title: item.title,
     image: item.image,
     alt: item.title,
+    price: money(item.priceTRY),
     paragraphs: lines,
     extra,
   }));
