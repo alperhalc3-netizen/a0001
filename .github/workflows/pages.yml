@@ -1,4 +1,4 @@
-# Publish the recovered static site. The Next.js source stays in source/ and is not deployed.
+# Publish the studio static build. recovered/ stays in the repo and is not uploaded.
 name: Deploy static content to Pages
 
 on:
@@ -28,10 +28,13 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v6
 
+      - name: Build static site
+        run: node source/studio/build.mjs
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: recovered
+          path: publish
           include-hidden-files: true
 
       - name: Deploy to GitHub Pages
