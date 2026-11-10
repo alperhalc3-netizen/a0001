@@ -54,6 +54,10 @@ The homepage link list and the grid `href`s also include `/Shred`, `/Vroom`, `/W
 - `--ease-out-elastic-100-30: linear(0, .2178 2.1%, 1.1144 8.49%, 1.2959 10.7%, 1.3463 11.81%, 1.3705 12.94%, 1.3726, 1.3643 14.48%, 1.3151 16.2%, 1.0317 21.81%, .941 24.01%, .8912 25.91%, .8694 27.84%, .8698 29.21%, .8824 30.71%, 1.0122 38.33%, 1.0357, 1.046 42.71%, 1.0416 45.7%, .9961 53.26%, .9839 57.54%, .9853 60.71%, 1.0012 68.14%, 1.0056 72.24%, .9981 86.66%, 1)`
 - Also defined, and used by buttons, overlays, or the palette: `--ease-out-expo: cubic-bezier(.19, 1, .22, 1)`, `--ease-in-out-sine: cubic-bezier(.445, .05, .55, .95)`, `--ease-out-sine: cubic-bezier(.39, .575, .565, 1)`, `--ease-in-out-cubic: cubic-bezier(.645, .045, .355, 1)`, `--ease-in-cubic: cubic-bezier(.55, .055, .675, .19)`.
 
+## Fidelity remeasure, 10 Nov 2026
+
+Same Chrome session, desktop 1440×900, after the first notes. Footer title stayed 470.25px (`33cqi`). At 72% of the scroll the vertical scale was 1 and the title box ended about 32px above the links. At 82% the scale was 0.42. By 90% it was back to about 1. The link box did not intersect the title box. A real mouse click on the palette toggle set `open=true`. The four swatches moved onto an arc above and left of the button, each 32px. On a 390px width the hero name and the grey role line were both 60.8px, and the page column gap was 128px.
+
 ## Not observed
 
 - No custom cursor. The only cursor rules found are `pointer` on buttons and `grab` / `grabbing` on the carousel.

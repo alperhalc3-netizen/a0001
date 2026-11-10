@@ -69,7 +69,43 @@ function palette() {
   return `<div class="palette" data-open="false"><button class="palette__toggle round" type="button" aria-label="Color themes">◉</button>${swatches}</div>`;
 }
 
+function allProjects() {
+  const list = [];
+  for (const item of art) {
+    list.push({
+      href: `${base}/works/${item.slug}/`,
+      title: item.title,
+      image: asset(item.image),
+      lines: [`${item.year}`, labels[item.category] || item.category, item.medium, item.dimensions].filter(Boolean),
+      price: "",
+      shopier: "",
+    });
+  }
+  for (const item of tattoos) {
+    list.push({
+      href: `${base}/tattoo/${item.slug}/`,
+      title: item.title,
+      image: asset(item.image),
+      lines: [item.medium || "Tattoo"],
+      price: "",
+      shopier: "",
+    });
+  }
+  for (const item of products) {
+    list.push({
+      href: `${base}/shop/${item.slug}/`,
+      title: item.title,
+      image: asset(item.image),
+      lines: [item.availability, item.shippingNote, item.description].filter(Boolean),
+      price: money(item.priceTRY),
+      shopier: item.purchaseUrl,
+    });
+  }
+  return list;
+}
+
 function shell({ title, kind, body }) {
+  const catalog = JSON.stringify(allProjects()).replaceAll("<", "\\u003c");
   return `<!doctype html>
 <html lang="en">
 <head>
@@ -84,6 +120,7 @@ function shell({ title, kind, body }) {
 ${header()}
 ${body}
 ${palette()}
+<script type="application/json" id="catalog">${catalog}</script>
 <script src="${base}/assets/app.js" defer></script>
 <script src="${base}/assets/brush.js" defer></script>
 </body>
@@ -108,26 +145,22 @@ function card(item, href) {
 
 const previewLimit = 9;
 
-function detail({ title, image, alt, paragraphs, price, extra }) {
+function overlayMarkup(project) {
   const facts = [
-    price ? `<p class="price">${esc(price)}</p>` : "",
-    paragraphs.map((line) => `<p class="lead">${esc(line)}</p>`).join(""),
-    extra || "",
+    project.price ? `<p class="price">${esc(project.price)}</p>` : "",
+    project.lines.map((line) => `<p class="lead">${esc(line)}</p>`).join(""),
+    project.shopier ? `<a class="pill" href="${esc(project.shopier)}" target="_blank" rel="noreferrer">Shopier</a>` : "",
   ].join("");
-  return shell({
-    title: `${title} — A/0001`,
-    kind: "detail",
-    body: `<div class="project-page">
+  return `<div class="project-page is-ready" id="project">
 <div class="modal">
-<div class="modal__bar"><a class="round" href="${base}/" aria-label="Close">×</a></div>
-<main class="modal__main" id="main">
-<h1>${words(title)}</h1>
+<div class="modal__bar"><a class="round" href="${base}/" data-close aria-label="Close">×</a></div>
+<div class="modal__main">
+<h1>${words(project.title)}</h1>
 <div class="facts">${facts}</div>
-<figure><img src="${asset(image)}" alt="${esc(alt)}"></figure>
-</main>
+<figure><img src="${project.image}" alt="${esc(project.title)}"></figure>
 </div>
-</div>`,
-  });
+</div>
+</div>`;
 }
 
 function moreLink(href, total) {
@@ -135,16 +168,13 @@ function moreLink(href, total) {
   return `<p class="more"><a class="pill" href="${href}">All / Tümü</a></p>`;
 }
 
-function home() {
+function homeMarkup() {
   const heroShots = art.slice(0, 4).map((item, index) => `<div class="hero__image" style="--delay:${index}"><a href="${base}/works/${item.slug}/"><img src="${asset(item.image)}" alt="${esc(item.title)}"></a></div>`).join("");
   const slides = art.slice(0, previewLimit).map((item) => `<div class="carousel__slide"><a href="${base}/works/${item.slug}/"><img src="${asset(item.image)}" alt="${esc(item.title)}" draggable="false"></a><a class="pill" href="${base}/works/${item.slug}/">${esc(item.title)}</a></div>`).join("");
   const tattooCards = tattoos.slice(0, previewLimit).map((item) => card(item, `${base}/tattoo/${item.slug}/`)).join("");
   const shopCards = products.slice(0, previewLimit).map((item) => card(item, `${base}/shop/${item.slug}/`)).join("");
   const role = site.tagline;
-  return shell({
-    title: "A/0001",
-    kind: "home",
-    body: `<main class="index" id="main">
+  return `<main class="index" id="main">
 <section class="hero">
 <div class="hero__top">
 <p class="kicker">${esc(site.location)}</p>
@@ -199,7 +229,18 @@ ${moreLink(`${base}/shop/`, products.length)}
 <li><a href="${base}/contact/">Contact page</a></li>
 </ul>
 <small>Original artwork by Alper Halıcı</small>
-</footer>`,
+</footer>`;
+}
+
+function home() {
+  return shell({ title: "A/0001", kind: "home", body: homeMarkup() });
+}
+
+function detail(project) {
+  return shell({
+    title: `${project.title} — A/0001`,
+    kind: "home",
+    body: homeMarkup() + overlayMarkup(project),
   });
 }
 
@@ -290,36 +331,9 @@ writePage("shop/index.html", archivePage({
   hrefFor: (item) => `${base}/shop/${item.slug}/`,
 }));
 
-for (const item of art) {
-  const lines = [`${item.year}`, labels[item.category] || item.category, item.medium, item.dimensions].filter(Boolean);
-  writePage(`works/${item.slug}/index.html`, detail({
-    title: item.title,
-    image: item.image,
-    alt: item.title,
-    paragraphs: lines,
-  }));
-}
-
-for (const item of tattoos) {
-  writePage(`tattoo/${item.slug}/index.html`, detail({
-    title: item.title,
-    image: item.image,
-    alt: item.title,
-    paragraphs: [item.medium || "Tattoo"],
-  }));
-}
-
-for (const item of products) {
-  const lines = [item.availability, item.shippingNote, item.description].filter(Boolean);
-  const extra = `<a class="pill" href="${esc(item.purchaseUrl)}" target="_blank" rel="noreferrer">Shopier</a>`;
-  writePage(`shop/${item.slug}/index.html`, detail({
-    title: item.title,
-    image: item.image,
-    alt: item.title,
-    price: money(item.priceTRY),
-    paragraphs: lines,
-    extra,
-  }));
+for (const project of allProjects()) {
+  const relative = project.href.replace(`${base}/`, "") + "index.html";
+  writePage(relative, detail(project));
 }
 
 console.log(`built ${art.length} art, ${tattoos.length} tattoos, ${products.length} products -> ${out}`);
