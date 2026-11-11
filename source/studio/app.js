@@ -202,12 +202,17 @@
   }
 
   function overlayInner(project) {
+    const booking = project.booking
+      ? `<div class="booking"><p class="lead">Randevu, çizim ve gün birlikte netleşir. Yazışma Instagram veya e-posta ile yürür.</p><a class="pill" href="https://ig.me/m/alper.tatts">Randevu al</a><a class="text-link" href="mailto:info.alperh@gmail.com?subject=D%C3%B6vme%20randevusu">E-posta</a></div>`
+      : "";
     const facts = [
       project.price ? `<p class="price">${escapeText(project.price)}</p>` : "",
-      project.lines.map((line) => `<p class="lead">${escapeText(line)}</p>`).join(""),
+      (project.lines || []).map((line) => `<p class="lead">${escapeText(line)}</p>`).join(""),
       project.shopier ? `<a class="pill" href="${escapeText(project.shopier)}" target="_blank" rel="noreferrer">Shopier</a>` : "",
+      booking,
     ].join("");
-    return `<div class="modal"><div class="modal__bar"><a class="round" href="${homeHref}" data-close aria-label="Close">×</a></div><div class="modal__main"><h1>${wordMarkup(project.title)}</h1><div class="facts">${facts}</div><figure><img src="${project.image}" alt="${escapeText(project.title)}"></figure></div></div>`;
+    const image = `<img src="${project.src}" srcset="${project.jpg}" width="${project.w}" height="${project.h}" alt="${escapeText(project.title)}" decoding="async">`;
+    return `<div class="modal"><div class="modal__bar"><a class="round" href="${homeHref}" data-close aria-label="Kapat">×</a></div><div class="modal__main"><figure>${image}</figure><div class="sheet"><h2 class="project-title">${wordMarkup(project.title)}</h2><div class="facts">${facts}</div></div></div></div>`;
   }
 
   let lockedScroll = 0;

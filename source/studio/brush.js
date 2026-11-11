@@ -6,6 +6,7 @@
   const style = document.createElement("style");
   style.textContent = `
     html.has-brush-cursor, html.has-brush-cursor * { cursor: none !important; }
+    html.has-brush-cursor a, html.has-brush-cursor button, html.has-brush-cursor summary, html.has-brush-cursor [role="button"] { cursor: pointer !important; }
     html.has-brush-cursor input, html.has-brush-cursor textarea, html.has-brush-cursor select { cursor: text !important; }
     .a0001-ink, .a0001-dabs { position: fixed; inset: 0; pointer-events: none; }
     .a0001-ink { z-index: 70; }
