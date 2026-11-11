@@ -29,7 +29,9 @@ jobs:
         uses: actions/configure-pages@v6
 
       - name: Build static site
-        run: node source/studio/build.mjs
+        run: |
+          python3 -m pip install --user pillow
+          node source/studio/build.mjs
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5
